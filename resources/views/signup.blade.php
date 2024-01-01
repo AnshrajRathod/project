@@ -1,4 +1,4 @@
-@include("partials.heder")
+@include("partials.header")
 @extends("partials.footer")
 
   <center> <strong class="text-primary"><h1> Sign-up</h1> </strong>  </center>
