@@ -1,5 +1,5 @@
 @include("partials.heder")
-
+@extends("partials.footer")
 <style>
 .img1 {
     border-radius: 50%;
@@ -38,23 +38,7 @@
     color: #555;
 }
 </style>
-    <div class="toast-container position-fixed top-4 end-0 p-3">
-        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-
-            <button type="button" class="btn-close float-right" data-bs-dismiss="toast" aria-label="Close"></button>
-            <div class="toast-header">
-                <h6><strong>Welcome Guest</strong> <br>
-                    <p class="mb-0">Manage cart, Orders and wishlist</p>
-                </h6>
-
-            </div>
-            <div class="toast-body">
-                <a href="" class="btn btn-outline-dark float-left">Sign in</a>
-                <a href="" class="btn btn-outline-dark float-right">Sign Up</a>
-            </div>
-        </div>
-    </div>
-
+   
     <div id="carouselExampleIndicators" class="carousel slide mt-4" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -153,26 +137,6 @@
 </div>
 </div>
 
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
-
-    <script>
-        const toastTrigger = document.getElementById('liveToastBtn')
-        const toastLiveExample = document.getElementById('liveToast')
-
-        if (toastTrigger) {
-            const toastBootstrap = new bootstrap.Toast(toastLiveExample)
-            toastTrigger.addEventListener('click', () => {
-                toastBootstrap.show()
-            })
-        }
-    </script>
 </body>
 
 </html>
