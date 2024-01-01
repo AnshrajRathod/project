@@ -14,7 +14,7 @@
 }
 
 .card {
-    / width: 100px; /
+    /* / width: 100px; / */
     border: none;
     transition: transform 0.3s;
 }
@@ -25,7 +25,7 @@
 
 .card img {
     height: 200px;
-    / Adjust the height of the card images /
+    /* / Adjust the height of the card images / */
     object-fit: cover;
 }
 
