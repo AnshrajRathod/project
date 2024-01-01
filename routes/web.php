@@ -17,8 +17,13 @@ use App\Http\Controllers\productcontroller;
 Route::get('/', function () {
     return view('index');
 });
+
+Route::get('/view-cart', function () {
+    return view('viewcart');
+})->name('view-cart');
  
 
 Route::get('/signup', [projectcontroller::class, 'signup'])->name('signup');
 Route::get('/login', [projectcontroller::class, 'login'])->name('login');
 Route::get('/add', [productcontroller::class, 'addview'])->name('add');
+Route::get('/view', [productcontroller::class, 'view'])->name('view');

@@ -87,50 +87,25 @@
     </div>
 
 
-<div class="container border border-5 mb-5">
-    <div class="container my-4 mt-5" id="ques">
-        <div class="row my-4">
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
+    <div class="container border border-5 mb-5">
+        <div class="container my-4 mt-5" id="ques">
+            <div class="row my-4">
+                @foreach ($product as $products)
+                    <div class="col">
+                        <div class="card">
+                <img src="{{$products->product_image_path}}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <h5 class="card-title">{{$products->product_name}}</h5>
+                    <p class="card-text">{{$products->product_description}}</p>
+                    <h3>₹{{$products->product_price}}</h3>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
-    </div>
+</div>
 
 
-    <div class="container d-flex align-items-center justify-content-center mb-3">
+<div class="container d-flex align-items-center justify-content-center mb-3">
     <a href="#">
         <button class="btn btn-primary">View All</button>
     </a>
