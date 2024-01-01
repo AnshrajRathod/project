@@ -11,12 +11,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Shoping-site</a>
+            <a class="navbar-brand" href="/">Shoping-site</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -30,7 +31,7 @@
                                 placeholder="Search" aria-label="Search">
 
                         </form>
-                    </div>
+                    </div>  
             </div>
             <i class="fa fa-shopping-bag float-right me-4" style="font-size:30px;color:white"></i>
             <i id="liveToastBtn" class="fa fa-user float-right me-4"
@@ -38,3 +39,19 @@
 
         </div>
     </nav>
+ <div class="toast-container position-fixed top-4 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+
+            <button type="button" class="btn-close float-right" data-bs-dismiss="toast" aria-label="Close"></button>
+            <div class="toast-header">
+                <h6><strong> Welcome Guest</strong> <br>
+                    <p class="mb-0">Manage cart, Orders and wishlist</p>
+                </h6>
+
+            </div>
+            <div class="toast-body">
+                <a href="{{ route('login') }}" class="btn btn-outline-dark float-left">Sign in</a>
+                <a href="{{ route('signup') }}" class="btn btn-outline-dark float-right">Sign Up</a>
+            </div>
+        </div>
+    </div>
