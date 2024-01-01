@@ -112,7 +112,7 @@
     </div>
 </div>
 
-{{-- 
+<!-- {{-- 
 @foreach ($customers as $customer)
 <div class="col">
     <div class="card">
@@ -124,7 +124,7 @@
         </div>
     </div>
 </div>
-@endforeach --}}
+@endforeach --}} -->
 
 
 
