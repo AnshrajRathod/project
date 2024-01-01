@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\projectcontroller;
+use App\Http\Controllers\productcontroller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+ 
+
+Route::get('/signup', [projectcontroller::class, 'signup'])->name('signup');
+Route::get('/login', [projectcontroller::class, 'login'])->name('login');
+Route::get('/add', [productcontroller::class, 'addview'])->name('add');
