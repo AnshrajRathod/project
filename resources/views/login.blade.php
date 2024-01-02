@@ -11,11 +11,19 @@
             <input type="email" class="form-control" id="email" name="email"
                 aria-describedby="email" value="{{ old('email') }}" required>
         </div>
+        @error('email')
+        <span class="text-danger">{{ $message }}</span>
+    @enderror
+
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" id="password" name="password" required>
             <div id="errorContainer2" class="text-danger"></div>
         </div>
+        @error('password')
+        <span class="text-danger">{{ $message }}</span>
+    @enderror
+
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
 
