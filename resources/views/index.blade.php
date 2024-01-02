@@ -132,7 +132,8 @@
 
     <div class="container d-flex align-items-center justify-content-center mb-3">
     <a href="#">
-        <button class="btn btn-primary">View All</button>
+        <button class="btn btn-primary" >View All</button>
+
     </a>
 </div>
 </div>
