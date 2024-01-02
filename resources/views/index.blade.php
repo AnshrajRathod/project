@@ -87,43 +87,28 @@
     </div>
 
 
-<div class="container border border-5 mb-5">
-    <div class="container my-4 mt-5" id="ques">
-        <div class="row my-4">
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
+    <div class="container border border-5 mb-5">
+        <div class="container my-4 mt-5" id="ques">
+            <div class="row my-4" id="productContainer">
+                <!-- Display the first 4 products -->
+                @foreach ($product as $products)
+                    <div class="col-3">
+                        <div class="card">
+                            <img src="/img/{{ $products->product_image_path }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $products->product_name }}</h5>
+                                <p class="card-text">{{ $products->product_description }}</p>
+                                <h3>₹{{ $products->product_price }}</h3>
+                                <a href="#" class="btn btn-dark">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
+    
+            <!-- "View All" button to load more products -->
+            <div class="container d-flex align-items-center justify-content-center mb-3">
+                <button id="viewAllBtn" class="btn btn-primary">View All</button>
             </div>
         </div>
     </div>
@@ -132,8 +117,7 @@
 
     <div class="container d-flex align-items-center justify-content-center mb-3">
     <a href="#">
-        <button class="btn btn-primary" >View All</button>
-
+        <button class="btn btn-primary">View All</button>
     </a>
 </div>
 </div>
