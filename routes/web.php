@@ -27,6 +27,7 @@ Route::post('/signup', [projectcontroller::class, 'signup'])->name('signup');
 Route::get('/login', [projectcontroller::class, 'loginview'])->name('loginview');
 Route::post('/login', [projectcontroller::class, 'login'])->name('login');
 
+Route::get('/search', [productcontroller::class, 'productview'])->name('search');
 Route::get('/', [productcontroller::class, 'productview'])->name('productview');
 Route::post('/cart/add/{product}', [productcontroller::class, 'add'])->name('cart.add');
 Route::get('/cart', [productcontroller::class, 'cartview'])->name('cartview');
