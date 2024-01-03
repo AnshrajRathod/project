@@ -58,10 +58,14 @@ class productcontroller extends Controller
         //         // return view('addproduct');
         //         return redirect()->route('cart.add')->with('success', 'Product added to cart successfully.');
         // }
-        public function productview()
+        public function productview(Request $request)
         {
-
+                $search = $request['search'] ?? "";  
+        if($search != ""){
+            $product = product::where('product_name', 'LIKE', "%$search%")->get();
+        }else{
                 $product = product::all();
+        }
                 $data = product::select('product.*', 'category_master.category_name',)
                         ->leftJoin('category_master', 'category_master.id', '=', 'product.category_id')->get();
 
