@@ -39,18 +39,16 @@
     }
 </style>
 
-    <div id="carouselExampleIndicators" class="carousel slide mt-4" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="/img/slide1.jpg" style="height: 500px; width:100%" class="d-block" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="/img/slide2.jpg" style="height: 500px; width:100%" class="d-block" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="/img/slide3.jpg" style="height: 500px; width:100%" class="d-block" alt="...">
-            </div>
-
+<div id="carouselExampleIndicators" class="carousel slide mt-4" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="/img/slide1.jpg" style="height: 500px; width:100%" class="d-block" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="/img/slide2.jpg" style="height: 500px; width:100%" class="d-block" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="/img/slide3.jpg" style="height: 500px; width:100%" class="d-block" alt="...">
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -92,65 +90,107 @@
 
 
 
-    <div class="container border show border-5 mb-5">
-        <div class="container my-4 mt-5" id="ques">
-            <div class="row my-4" id="productContainer">
-                <!-- Display the first 4 products -->
-                @foreach ($product->take(4) as $products)
-                    <div class="col-3">
-                        <div class="card">
-                            <img src="/img/{{ $products->product_image_path }}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $products->product_name }}</h5>
-                                <p class="card-text">{{ $products->product_description }}</p>
-                                <h3>₹{{ $products->product_price }}</h3>
-                                <a href="{{ route('add' , ['id' => $products->id]) }}" class="btn btn-dark">Add to cart</a>
-                            </div>
+<div class="container border show border-5 mb-5">
+    <div class="container my-4 mt-5" id="ques">
+        <div class="row my-4" id="productContainer">
+            <!-- Display the first 4 products -->
+            @foreach ($product->take(4) as $products)
+                <div class="col-3">
+                    <div class="card">
+                        <img src="/img/{{ $products->product_image_path }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $products->product_name }}</h5>
+                            <p class="card-text">{{ $products->product_description }}</p>
+                            <h3>₹{{ $products->product_price }}</h3>
+                            <a href="{{ route('add' , ['id' => $products->id]) }}" class="btn btn-dark">Add to cart</a>
                         </div>
                     </div>
-                @endforeach
-            </div>
-            <div class="container d-flex align-items-center justify-content-center mb-3">
-                <button id="viewAllBtn" onclick="showHiddenElements()" class="btn btn-primary">View All</button>
-            </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="container d-flex align-items-center justify-content-center mb-3">
+            <button id="viewAllBtn" onclick="showHiddenElements()" class="btn btn-primary">View All</button>
         </div>
     </div>
+</div>
 
-    <div class="container border hidden border-5 mb-5">
-        <div class="container my-4 mt-5" id="ques">
-            <div class="row my-4" id="productContainer">
-                @foreach ($product as $products)
-                    <div class="col-3">
-                        <div class="card">
-                            <img src="/img/{{ $products->product_image_path }}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $products->product_name }}</h5>
-                                <p class="card-text">{{ $products->product_description }}</p>
-                                <h3>₹{{ $products->product_price }}</h3>
-                                <a href="{{ route('add' , ['id' => $products->id]) }}"  class="btn btn-dark">Add to cart</a>
-                            </div>
+<div class="container border hidden border-5 mb-5">
+    <div class="container my-4 mt-5" id="ques">
+        <div class="row my-4" id="productContainer">
+            @foreach ($product as $products)
+                <div class="col-3">
+                    <div class="card">
+                        <img src="/img/{{ $products->product_image_path }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $products->product_name }}</h5>
+                            <p class="card-text">{{ $products->product_description }}</p>
+                            <h3>₹{{ $products->product_price }}</h3>
+                            <a href="{{ route('add' , ['id' => $products->id]) }}"  class="btn btn-dark">Add to cart</a>
                         </div>
                     </div>
-                @endforeach
-            </div>
-            <div class="container d-flex align-items-center justify-content-center mb-3">
-                <button id="viewAllBtn" onclick="HiddenElements()" class="btn btn-primary hidd1">View Less</button>
-            </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="container d-flex align-items-center justify-content-center mb-3">
+            <button id="viewAllBtn" onclick="HiddenElements()" class="btn btn-primary hidd1">View Less</button>
         </div>
     </div>
+</div>
+
+<style>
+    .hidden{
+        display: none;
+    }
+    .show{
+        display: block;
+    }
+    .hidd1{
+        display: none;
+    }
+</style>
+
+<script>
+function showHiddenElements() {
+    let hiddenElements = document.querySelectorAll('.hidden');
+
+    hiddenElements.forEach(function (element) {
+        element.style.display = 'block';
+    });
+
+    let showElements = document.querySelectorAll(('.show'));
+
+    showElements.forEach(function (element) {
+        element.style.display = 'none';
+    });
+
+    let showHiddenbtn = document.querySelectorAll('.hidd1');
+
+    showHiddenbtn.forEach(function (element) {
+        element.style.display = 'block';
+    });
+}
+function HiddenElements() {
+    let hiddenElements = document.querySelectorAll('.hidden');
+
+        hiddenElements.forEach(function (element) {
+            element.style.display = 'none';
+        });
+
+        let showElements = document.querySelectorAll(('.show'));
+
+        showElements.forEach(function (element) {
+            element.style.display = 'block';
+        });
+
+        let showHiddenbtn = document.querySelectorAll('.hidd1');
+
+        showHiddenbtn.forEach(function (element) {
+            element.style.display = 'none';
+        });
+}
+</script>
     
-
-    <style>
-        .hidden{
-            display: none;
-        }
-        .show{
-            display: block;
-        }
-        .hidd1{
-            display: none;
-        }
-    </style>
+    
 
 <script>
     function showHiddenElements() {
