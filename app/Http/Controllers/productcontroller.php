@@ -7,25 +7,32 @@ use App\Models\product;
 
 class productcontroller extends Controller
 {
-public function addview(){
+        public function addview(){
 
 
-return view('addproduct');
-}
-public function add(){
+        return view('addproduct');
+        }
+        public function add(){
 
 
-return view('addproduct');
-}
-public function productview(){
+        return view('addproduct');
+        }
+        public function productview(Request $request){
 
-$product = product::all();
- $data = product::select('product.*', 'category_master.category_name',)
-        ->leftJoin('category_master', 'category_master.id', '=', 'product.category_id')->get();
+        $search = $request->input('search', '');
 
-        $data1= compact('data','product');
-return view('index')->with($data1);
-}
+        if($search != ""){
+                $product = product::where('product_name', 'LIKE', "%$search%")->get();
+        } else {
+                $product = product::all();
+        }
 
+        $data = product::select('product.*', 'category_master.category_name')
+                ->leftJoin('category_master', 'category_master.id', '=', 'product.category_id')
+                ->get();
 
+        $data1 = compact('data', 'product');
+        return view('index', $data1);
+        }
+        
 }

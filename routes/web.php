@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\projectcontroller;
 use App\Http\Controllers\productcontroller;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +21,6 @@ Route::get('/', function () {
 
 Route::get('/add', [productcontroller::class, 'addview'])->name('add');
 
-
 Route::get('/signup', [projectcontroller::class, 'signupview'])->name('signup');
 Route::post('/signup', [projectcontroller::class, 'signup'])->name('signup');
 
@@ -28,3 +28,5 @@ Route::get('/login', [projectcontroller::class, 'loginview'])->name('loginview')
 Route::post('/login', [projectcontroller::class, 'login'])->name('login');
 
 Route::get('/', [productcontroller::class, 'productview'])->name('productview');
+
+Route::get('/search', [productcontroller::class, 'productview'])->name('search');
