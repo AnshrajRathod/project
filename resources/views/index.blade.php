@@ -99,7 +99,7 @@
                                 <h5 class="card-title">{{ $products->product_name }}</h5>
                                 <p class="card-text">{{ $products->product_description }}</p>
                                 <h3>₹{{ $products->product_price }}</h3>
-                                <a href="#" class="btn btn-dark">Add to cart</a>
+                                <a href="{{ route('add' , ['id' => $products->id]) }}"  class="btn btn-dark">Add to cart</a>
                             </div>
                         </div>
                     </div>
