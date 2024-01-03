@@ -18,11 +18,12 @@ return new class extends Migration
             $table->unsignedInteger('product_id')->index('product_id_foreign');
             $table->integer('quntity');
             $table->integer('price');
-            $table->unsignedInteger('users_id')->index('user_id_foreign');
+            $table->unsignedBigInteger('users_id')->index('users_id_foreign');
             $table->string('status');
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('product')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('users_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
