@@ -88,23 +88,23 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
     $(document).ready(function () {
-       
+
         $("#menCategory").click(function () {
-    
+
             window.location.href = "/search?search=men";
         });
     });
     $(document).ready(function () {
-       
+
         $("#womenCategory").click(function () {
-          
+
             window.location.href = "/search?search=women";
         });
     });
     $(document).ready(function () {
-      
+
         $("#kids").click(function () {
-            
+
             window.location.href = "/search?search=kids";
         });
     });
@@ -120,7 +120,7 @@
 <div class="container border show border-5 mb-5">
     <div class="container my-4 mt-5" id="ques">
         <div class="row my-4" id="productContainer">
-          
+
             @foreach ($product->take(4) as $products)
                 <div class="col-3">
                     <div class="card">
@@ -216,8 +216,8 @@ function HiddenElements() {
         });
 }
 </script>
-    
-    
+
+
 
 <script>
     function showHiddenElements() {
@@ -259,6 +259,5 @@ function HiddenElements() {
             });
     }
 </script>
-    
 </body>
 </html>
