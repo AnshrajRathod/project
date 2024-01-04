@@ -1,7 +1,7 @@
 @include("partials.header")
 @extends("partials.footer")
 
-<center> <strong class="text-primary"><h1> Login Page   </h1> </strong>  </center>
+<center> <strong class="text-primary"><h1> Sign-In </h1> </strong>  </center>
 <div class="container my-5">
 
     <form action="{{ route('login') }}" method="POST" id="loginForm">
@@ -24,7 +24,7 @@
         <span class="text-danger">{{ $message }}</span>
     @enderror
 
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary">Sign-in</button>
     </form>
 
 

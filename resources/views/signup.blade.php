@@ -2,7 +2,7 @@
 @extends('partials.footer')
 
 <center> <strong class="text-primary">
-        <h1> Sign-up</h1>
+        <h1> Sign-Up</h1>
     </strong> </center>
 
 <div class="container my-5">
@@ -79,7 +79,7 @@
             </div>
 
 
-            <button type="submit" class="btn btn-primary my-4" id="startStopButton">Register</button>
+            <button type="submit" class="btn btn-primary my-4" id="startStopButton">Sign-up</button>
     </form>
 
 </div>
