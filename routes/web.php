@@ -33,3 +33,5 @@ Route::post('/cart/add/{product}', [productcontroller::class, 'add'])->name('car
 Route::get('/cart', [productcontroller::class, 'cartview'])->name('cartview');
 Route::get('/shoppingview', [productcontroller::class, 'shoppingview'])->name('shoppingview');
 Route::get('/delete/{id}', [productcontroller::class, 'delete'])->name('delete');
+
+Route::get('/logout', [projectcontroller::class, 'logout'])->name('logout');
