@@ -29,7 +29,7 @@
                     </div>  
             </div>
            
-            <i class="fa fa-shopping-bag float-right me-4" style="font-size:30px;color:white"></i>
+          <a href="{{route('cartview')}}">  <i class="fa fa-shopping-bag float-right me-4" style="font-size:30px;color:white"></i></a>
             <i id="liveToastBtn" class="fa fa-user float-right me-4"
             style="font-size:30px; color:white; cursor: pointer;"></i>
 

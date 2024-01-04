@@ -66,25 +66,48 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-4">
-            <div class="img text-center">
+            <div class="img text-center"id="menCategory">
                 <img class="img1" src="/img/mens photo.jpg" alt="man"><br>
                 <label for="Men">Men</label>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="img text-center">
+            <div class="img text-center" id="womenCategory">
                 <img class="img1" src="/img/womens photo.jpg" alt="woman"><br>
                 <label for="Womens">Womens</label>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="img text-center">
+            <div class="img text-center" id="kids">
                 <img class="img1" src="/img/kidsphoto.jpg" alt="kids"><br>
                 <label for="Kids">Kids</label>
             </div>
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+       
+        $("#menCategory").click(function () {
+    
+            window.location.href = "/search?search=men";
+        });
+    });
+    $(document).ready(function () {
+       
+        $("#womenCategory").click(function () {
+          
+            window.location.href = "/search?search=women";
+        });
+    });
+    $(document).ready(function () {
+      
+        $("#kids").click(function () {
+            
+            window.location.href = "/search?search=kids";
+        });
+    });
 
     {{-- 
     @foreach ($customers as $customer)
@@ -102,11 +125,15 @@
 
 
 
+</script>
+
+
+
 
 <div class="container border show border-5 mb-5">
     <div class="container my-4 mt-5" id="ques">
         <div class="row my-4" id="productContainer">
-            <!-- Display the first 4 products -->
+          
             @foreach ($product->take(4) as $products)
                 <div class="col-3">
                     <div class="card">
