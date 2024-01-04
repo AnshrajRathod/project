@@ -2,11 +2,9 @@
 @extends("partials.footer")
 
 <style>
-<<<<<<< HEAD
-.img1 {
-=======
+
     .img1 {
->>>>>>> f3bac8bf5ba82d94cf9aa3aad10acf46f72bdaa3
+
         border-radius: 50%;
         width: 100px;
         height: 100px;
@@ -114,13 +112,11 @@
     });
 
 
-<<<<<<< HEAD
+
 
 
 </script>
 
-=======
->>>>>>> f3bac8bf5ba82d94cf9aa3aad10acf46f72bdaa3
 
 
 
