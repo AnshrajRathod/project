@@ -2,7 +2,11 @@
 @extends("partials.footer")
 
 <style>
+<<<<<<< HEAD
 .img1 {
+=======
+    .img1 {
+>>>>>>> f3bac8bf5ba82d94cf9aa3aad10acf46f72bdaa3
         border-radius: 50%;
         width: 100px;
         height: 100px;
@@ -109,24 +113,14 @@
         });
     });
 
-    {{-- 
-    @foreach ($customers as $customer)
-    <div class="col">
-        <div class="card">
-            <img src="{{$customer->image}}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{$customer->name}}</h5>
-                <p class="card-text">{{$customer->decs}}</p>
-                <p>{{$customer->price}}</p>
-            </div>
-        </div>
-    </div>
-    @endforeach --}}
 
+<<<<<<< HEAD
 
 
 </script>
 
+=======
+>>>>>>> f3bac8bf5ba82d94cf9aa3aad10acf46f72bdaa3
 
 
 
