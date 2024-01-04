@@ -1,6 +1,15 @@
 @include("partials.header")
 @extends('partials.footer')
 
+
+
+
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
 <div class="container-fluid row my-4" id="productContainer">
 {{-- {{$product->product_name}} --}}
     <!-- Display the first 4 products -->
@@ -40,9 +49,21 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, ab. Eligendi eius laboriosam impedit, dolore quod placeat architecto,<b>{{ $product->product_name }}</b> aut temporibus asperiores ad dolores ab. Assumenda libero quidem repudiandae adipisci soluta.
             </div>
 <span><b> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque similique maiores asperiores</b> </span>
-<br><br><br><br>
-<span> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque similique maiores asperiores </span>
-<span> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque similique maiores asperiores </span>
+<br><br><br>
+
+<ul>
+    <li>
+        <span> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque similique maiores asperiores </span>
+       
+    </li>
+    
+</ul>
+<ul>
+    <li>
+        <span> Lorem ipsum, dolor sit amet <b>{{ $product->product_description }}</b>. Atque similique maiores asperiores </span>
+    </li>
+
+</ul>
 
 <form action="{{ route('cart.add', $product->id) }}" method="POST" class="my-5">
     @csrf
