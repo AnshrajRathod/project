@@ -28,8 +28,12 @@
                         </form>
                     </div>  
             </div>
-           
-          <a href="{{route('cartview')}}">  <i class="fa fa-shopping-bag float-right me-4" style="font-size:30px;color:white"></i></a>
+           @if (Auth::check())
+           <a href="{{route('vieworder')}}">  <i class="fa fa-dropbox float-right me-4" style="font-size:30px;color:white"></i></a>
+           <a href="{{route('cartview')}}">  <i class="fa fa-shopping-bag float-right me-4" style="font-size:30px;color:white"></i></a>
+               @else
+               {{header('location:login')}}
+           @endif
             <i id="liveToastBtn" class="fa fa-user float-right me-4"
             style="font-size:30px; color:white; cursor: pointer;"></i>
 
@@ -51,9 +55,16 @@
                     <p class="mb-0">Manage cart, Orders and wishlist</p>
                 </h6>
             </div>
+            @if (Auth::check())
+            <div class="toast-body">
+                <a href="{{route('logout')}}" class="btn btn-outline-dark float-right">Logout</a>
+            </div>
+            @else
             <div class="toast-body">
                 <a href="{{ route('login') }}" class="btn btn-outline-dark float-left">Sign in</a>
                 <a href="{{ route('signup') }}" class="btn btn-outline-dark float-right">Sign Up</a>
             </div>
+            @endif
+
         </div>
 </div>

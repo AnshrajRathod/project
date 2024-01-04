@@ -32,27 +32,60 @@
             </a>
             
             
-            
+            <a href="#" >
+                <button onclick="hidee()" class="btn btn-danger fs-6 my-3">Order</button>
+            </a>
+<div class="hidee">
+            <h5>Please pay here</h5>
+            <p>Check No.</p>
+            <input type="number" name="check" >
+            <a href="{{ route('order', ['id' => $product['id']]) }}" >
+                <button class="btn btn-danger fs-6 my-3">Order</button>
+            </a>
+        </div>
         </div>
     </div>
 </div>
 </div>
 @endforeach
 
-
-
 <script>
-    function decreaseQuantity(productId) {
+    function hidee(){
+        let hiddenElements = document.querySelectorAll('.hidee');
+        hiddenElements.forEach(function (element) {
+        element.style.display = 'block';
+});
+    }
+</script>
+<style>
+    .hidee{
+        display: none;
+    }
+</style>
+<script>
+    function decreaseQuantity(productId, price) {
         let quantityElement = document.getElementById('quantity_' + productId);
+        let totalElement = document.getElementById('total_' + productId);
         let currentQuantity = parseInt(quantityElement.textContent);
+
         if (currentQuantity > 1) {
             quantityElement.textContent = currentQuantity - 1;
+            updateTotal(productId, (currentQuantity - 1) * price);
         }
     }
 
-    function increaseQuantity(productId) {
+    function increaseQuantity(productId, price) {
         let quantityElement = document.getElementById('quantity_' + productId);
+        let totalElement = document.getElementById('total_' + productId);
         let currentQuantity = parseInt(quantityElement.textContent);
+
         quantityElement.textContent = currentQuantity + 1;
+        updateTotal(productId, (currentQuantity + 1) * price);
+    }
+
+    function updateTotal(productId, total) {
+        let totalElement = document.getElementById('total_' + productId);
+        totalElement.textContent = total;
     }
 </script>
+

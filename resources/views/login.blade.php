@@ -3,7 +3,9 @@
 
 <center> <strong class="text-primary"><h1> Sign-In </h1> </strong>  </center>
 <div class="container my-5">
-
+    @error('message')
+    <span class="text-danger">{{ $message }}</span>
+@enderror
     <form action="{{ route('login') }}" method="POST" id="loginForm">
         @csrf
         <div class="mb-3">
