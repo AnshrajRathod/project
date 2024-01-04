@@ -28,7 +28,7 @@
                         </form>
                     </div>  
             </div>
-            <!-- <i class="float-right me-4" style="font-size:30px;color:white"><img src="/img/view cart.jpg" width="30px" height="30px" alt="view-cart.."></i> -->
+           
             <i class="fa fa-shopping-bag float-right me-4" style="font-size:30px;color:white"></i>
             <i id="liveToastBtn" class="fa fa-user float-right me-4"
             style="font-size:30px; color:white; cursor: pointer;"></i>
