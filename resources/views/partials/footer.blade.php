@@ -18,3 +18,11 @@ toastTrigger.addEventListener('click', () => {
 }
 </script>
 
+<!-- <footer class="text-center text-lg-start footer-expand-lg" style="background-color: #1b4972;">
+
+    <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2024 Copyright:
+      <a class="text-white" href="#">Shopping-Site.com</a>
+    </div>
+
+  </footer> -->
