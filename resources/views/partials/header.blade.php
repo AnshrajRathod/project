@@ -51,9 +51,16 @@
                     <p class="mb-0">Manage cart, Orders and wishlist</p>
                 </h6>
             </div>
+            @if (Auth::check())
+            <div class="toast-body">
+                <a href="{{route('logout')}}" class="btn btn-outline-dark float-right">Logout</a>
+            </div>
+            @else
             <div class="toast-body">
                 <a href="{{ route('login') }}" class="btn btn-outline-dark float-left">Sign in</a>
                 <a href="{{ route('signup') }}" class="btn btn-outline-dark float-right">Sign Up</a>
             </div>
+            @endif
+
         </div>
 </div>

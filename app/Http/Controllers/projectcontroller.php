@@ -67,4 +67,9 @@ class projectcontroller extends Controller
         }
     }
 
+    public function logout(){
+        Auth::logout();
+        return redirect('/');
+    }
+
 }
