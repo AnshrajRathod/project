@@ -177,44 +177,44 @@
 </style>
 
 <script>
-function showHiddenElements() {
-    let hiddenElements = document.querySelectorAll('.hidden');
-
-    hiddenElements.forEach(function (element) {
-        element.style.display = 'block';
-    });
-
-    let showElements = document.querySelectorAll(('.show'));
-
-    showElements.forEach(function (element) {
-        element.style.display = 'none';
-    });
-
-    let showHiddenbtn = document.querySelectorAll('.hidd1');
-
-    showHiddenbtn.forEach(function (element) {
-        element.style.display = 'block';
-    });
-}
-function HiddenElements() {
-    let hiddenElements = document.querySelectorAll('.hidden');
+    function showHiddenElements() {
+        let hiddenElements = document.querySelectorAll('.hidden');
 
         hiddenElements.forEach(function (element) {
-            element.style.display = 'none';
+            element.style.display = 'block';
         });
 
         let showElements = document.querySelectorAll(('.show'));
 
         showElements.forEach(function (element) {
-            element.style.display = 'block';
+            element.style.display = 'none';
         });
 
         let showHiddenbtn = document.querySelectorAll('.hidd1');
 
         showHiddenbtn.forEach(function (element) {
-            element.style.display = 'none';
+            element.style.display = 'block';
         });
-}
+    }
+    function HiddenElements() {
+        let hiddenElements = document.querySelectorAll('.hidden');
+
+            hiddenElements.forEach(function (element) {
+                element.style.display = 'none';
+            });
+
+            let showElements = document.querySelectorAll(('.show'));
+
+            showElements.forEach(function (element) {
+                element.style.display = 'block';
+            });
+
+            let showHiddenbtn = document.querySelectorAll('.hidd1');
+
+            showHiddenbtn.forEach(function (element) {
+                element.style.display = 'none';
+            });
+    }
 </script>
 
 
