@@ -35,3 +35,7 @@ Route::get('/shoppingview', [productcontroller::class, 'shoppingview'])->name('s
 Route::get('/delete/{id}', [productcontroller::class, 'delete'])->name('delete');
 
 Route::get('/logout', [projectcontroller::class, 'logout'])->name('logout');
+
+Route::get('/order/{id}', [productcontroller::class, 'order'])->name('order');
+
+Route::get('/vieworder', [productcontroller::class, 'vieworder'])->name('vieworder');

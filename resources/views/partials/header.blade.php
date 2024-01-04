@@ -28,8 +28,12 @@
                         </form>
                     </div>  
             </div>
-           
-          <a href="{{route('cartview')}}">  <i class="fa fa-shopping-bag float-right me-4" style="font-size:30px;color:white"></i></a>
+           @if (Auth::check())
+           <a href="{{route('vieworder')}}">  <i class="fa fa-dropbox float-right me-4" style="font-size:30px;color:white"></i></a>
+           <a href="{{route('cartview')}}">  <i class="fa fa-shopping-bag float-right me-4" style="font-size:30px;color:white"></i></a>
+               @else
+               {{header('location:login')}}
+           @endif
             <i id="liveToastBtn" class="fa fa-user float-right me-4"
             style="font-size:30px; color:white; cursor: pointer;"></i>
 

@@ -2,7 +2,9 @@
 @extends("partials.footer")
 
 <style>
+
     .img1 {
+
         border-radius: 50%;
         width: 100px;
         height: 100px;
@@ -108,6 +110,7 @@
             window.location.href = "/search?search=kids";
         });
     });
+
 
 
 
