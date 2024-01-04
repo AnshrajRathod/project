@@ -31,3 +31,5 @@ Route::get('/search', [productcontroller::class, 'productview'])->name('search')
 Route::get('/', [productcontroller::class, 'productview'])->name('productview');
 Route::post('/cart/add/{product}', [productcontroller::class, 'add'])->name('cart.add');
 Route::get('/cart', [productcontroller::class, 'cartview'])->name('cartview');
+
+Route::get('/logout', [projectcontroller::class, 'logout'])->name('logout');
