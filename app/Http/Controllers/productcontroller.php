@@ -102,9 +102,6 @@ class productcontroller extends Controller
 
         public function delete($id){
                 $cart = cart::find($id);
-                
-               
-                
                         $cart->delete();
 
 
@@ -125,7 +122,6 @@ class productcontroller extends Controller
                 $order->product_image_path = $product->product_image_path;
                 $order->status = 'payment successful';
                 $order->save();
-            
    
                 session()->flash('order', 'signup successfull');
 
