@@ -1,8 +1,26 @@
 @include('partials.header')
 @extends('partials.footer')
 
+@if (session()->has('order'))
+<div class="alert alert-success alert-dismissible fade show my-2" role="alert" id="addcart">
+    <strong>Success</strong> order successfully 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </button>
+</div>
+<script>
+    setTimeout(function() {
+        $('#addcart').alert('close');
+    }, 3000);
+
+</script>
+@endif
+
 @foreach($cart as $product)
-    
+@php
+$orderid = $product->users_id;
+$users = Auth::user()->id;
+@endphp
+@if($orderid == $users )
 <div class="card mb-4">
     <div class="row g-0">
         <div class="col-md-2">
@@ -14,15 +32,16 @@
                 <h5 class="card-text"><strong>Price:</strong> ₹{{ $product['price'] }}</h5>
                 <div class="row">
                 <div class="col-md-6">                   
-                    {{-- <p class="card-text"><strong>Quantity:</strong> {{ $product['quntity'] }}</p> --}}
-                    <p class="card-text"><strong>Quantity:</strong>
-                        <button class="btn btn-sm btn-secondary" onclick="decreaseQuantity({{ $product['product_id'] }})">-</button>
-                        <span id="quantity_{{ $product['product_id'] }}">{{ $product['quntity'] }}</span>
-                        <button class="btn btn-sm btn-secondary" onclick="increaseQuantity({{ $product['product_id'] }})">+</button>
+                   
+                    <p class="card-text">
+                        <strong>Quantity:</strong>
+                        <button class="btn btn-sm btn-secondary"    onclick="decreaseQuantity({{ $product['id'] }})">-</button>
+                        <span id="quantity_{{ $product['id'] }}">{{ $product['quntity'] }}</span>
+                        <button class="btn btn-sm btn-secondary" onclick="increaseQuantity({{ $product['id'] }})">+</button>
                     </p>
                 </div>
                 <div class="col-md-6 text-end">
-                    <p class="card-text"><strong>Total:</strong> {{ $product['quntity']* $product['price'] }}</p>
+                    <p class="card-text"><strong>Total:</strong> <span id="price_{{ $product['id'] }}">{{ $product['quntity']* $product['price'] }}</span> </p>
                 </div>
 
             </div>
@@ -32,22 +51,33 @@
             </a>
             
             
-            <a href="#" >
-                <button onclick="hidee()" class="btn btn-danger fs-6 my-3">Order</button>
-            </a>
-<div class="hidee">
+            
+ 
             <h5>Please pay here</h5>
-            <p>Check No.</p>
-            <input type="number" name="check" >
-            <a href="{{ route('order', ['id' => $product['id']]) }}" >
-                <button class="btn btn-danger fs-6 my-3">Order</button>
+           
+            <a href="{{ route('order', ['id' => $product['id']]) }}"onclick="return confirm('Are you sure you want to order this ?')" >
+            <button class="btn btn-danger fs-6 my-3">Order</button>
             </a>
-        </div>
+       
         </div>
     </div>
 </div>
 </div>
+
+@endif
+
 @endforeach
+
+@if($cart->where('users_id', Auth::id())->isEmpty())
+<center>
+    <div class="alert alert-danger my-5">
+       <b>No product found in Cart.</b>
+    </div>
+</center>
+@endif
+
+
+
 
 <script>
     function hidee(){
@@ -89,3 +119,36 @@
     }
 </script>
 
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+
+function updateQuantity(productId, operation) {
+    $.ajax({
+        type: 'get',
+        url: '/update-quantity/' + productId,
+        data: { _token: '{{ csrf_token() }}', operation: operation },
+        success: function(response) {
+          
+            $('#quantity_' + productId).text(response.quantity);
+            console.log(response.quantity);
+          
+            $('#price_' + productId).text(response.price);
+
+
+  
+        },
+        error: function(error) {
+            console.log('Error:', error);
+        }
+    });
+}
+
+function increaseQuantity(productId) {
+    updateQuantity(productId, 'increase');
+}
+
+function decreaseQuantity(productId) {
+    updateQuantity(productId, 'decrease');
+}
+</script>
