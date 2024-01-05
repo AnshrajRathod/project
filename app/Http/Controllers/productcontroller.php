@@ -54,7 +54,6 @@ class productcontroller extends Controller
                         $cart->product_image_path = $product->product_image_path;
                         $cart->status = 'pending';
                         $cart->save();
-
                 }
         }else{
                 return redirect()->route('login')->with('message', 'Please log in to add products to your cart.');
