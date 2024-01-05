@@ -15,20 +15,29 @@ use App\Http\Controllers\productcontroller;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+
+
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/', function () {
+        return view('index');
+    });
+    Route::get('/signup', [projectcontroller::class, 'signupview'])->name('signup');
+    Route::post('/signup', [projectcontroller::class, 'signup'])->name('signup');
+    Route::get('/login', [projectcontroller::class, 'loginview'])->name('loginview');
+    Route::post('/login', [projectcontroller::class, 'login'])->name('login');
+    Route::get('/search', [productcontroller::class, 'productview'])->name('search');
+    Route::get('/', [productcontroller::class, 'productview'])->name('productview');
+
+
 });
 
+
+
+Route::group(['middleware' => 'auth'], function () { 
 Route::get('/add/{id}', [productcontroller::class, 'addview'])->name('add');
 
-Route::get('/signup', [projectcontroller::class, 'signupview'])->name('signup');
-Route::post('/signup', [projectcontroller::class, 'signup'])->name('signup');
 
-Route::get('/login', [projectcontroller::class, 'loginview'])->name('loginview');
-Route::post('/login', [projectcontroller::class, 'login'])->name('login');
 
-Route::get('/search', [productcontroller::class, 'productview'])->name('search');
-Route::get('/', [productcontroller::class, 'productview'])->name('productview');
 Route::post('/cart/add/{product}', [productcontroller::class, 'add'])->name('cart.add');
 Route::get('/cart', [productcontroller::class, 'cartview'])->name('cartview');
 Route::get('/shoppingview', [productcontroller::class, 'shoppingview'])->name('shoppingview');
@@ -39,3 +48,7 @@ Route::get('/logout', [projectcontroller::class, 'logout'])->name('logout');
 Route::get('/order/{id}', [productcontroller::class, 'order'])->name('order');
 
 Route::get('/vieworder', [productcontroller::class, 'vieworder'])->name('vieworder');
+Route::get('/update-quantity/{product_id}', [productcontroller::class, 'updateQuantity'])->name('update.quantity');
+
+
+});

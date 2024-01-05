@@ -1,6 +1,21 @@
 @include("partials.header")
 @extends("partials.footer")
 
+
+
+@if (session()->has('signup'))
+<div class="alert alert-success alert-dismissible fade show my-2" role="alert" id="signupSuccessAlert">
+    <strong>Success</strong> Signup Successfully please Login
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </button>
+</div>
+<script>
+    setTimeout(function() {
+        $('#signupSuccessAlert').alert('close');
+    }, 3000);
+
+</script>
+@endif
 <center> <strong class="text-primary"><h1> Sign-In </h1> </strong>  </center>
 <div class="container my-5">
     @error('message')

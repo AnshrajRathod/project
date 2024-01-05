@@ -43,7 +43,7 @@ class projectcontroller extends Controller
         $singup->password = Hash::make($request->password);
         $singup->save();
 
-
+        session()->flash('signup', 'signup successfull');
         return redirect('login');
     }
     public function loginview()
@@ -59,6 +59,8 @@ class projectcontroller extends Controller
         ]);
         if (Auth::attempt($request->only('email', 'password'))) {
             $user = User::find(Auth::user()->id);
+
+            session()->flash('login', 'login successfull');
             return redirect('/');
         } else {
             return redirect()->back()

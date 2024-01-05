@@ -9,10 +9,31 @@
     }
 </style>
 
+
+@if (session()->has('order'))
+<div class="alert alert-success alert-dismissible fade show my-2" role="alert" id="signupSuccessAlert">
+    <strong>Success</strong> your order placed successfully
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<script>
+    setTimeout(function() {
+        $('#signupSuccessAlert').alert('close');
+    }, 3000);
+</script>
+
+@endif
+
 <h2 class="text-center text-danger-emphasis mt-2">Your Orders</h2>
 
 <div class="container mx-auto">
+    
     @foreach ($order as $cartItem)
+    {{-- {{$cartItem->users_id}} --}}
+    @php
+    $orderid = $cartItem->users_id;
+    $users = Auth::user()->id;
+    @endphp
+    @if($orderid == $users )
         <div class="card mb-4 shadow-lg p-3 mb-5 bg-body-tertiary rounded">
             <div class="row g-0">
                 <div class="col-md-2">
@@ -34,7 +55,7 @@
                                 <p class="card-text"><strong>Quantity:</strong> {{ $cartItem->quntity }}</p>
                             </div>
                             <div class="col-md-6 text-end">
-                                <p class="card-text"><strong>Total:</strong> ₹{{ $cartItem->price}}</p>
+                                <p class="card-text"><strong>Total:</strong> ₹{{ $cartItem->price * $cartItem->quntity }}</p>
                             </div>
                         </div><br>
                         <div class="row">
@@ -44,5 +65,18 @@
                 </div>
             </div>
         </div>
-    @endforeach
+       
+        
+
+        @endif
+
+        @endforeach
+        
+        @if($order->where('users_id', Auth::id())->isEmpty())
+        <center>
+            <div class="alert alert-danger my-5">
+               <b>No product found in Order.</b>
+            </div>
+        </center>
+    @endif
 </div>

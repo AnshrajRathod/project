@@ -63,8 +63,8 @@ class productcontroller extends Controller
 
                 $data111 = compact('cart'); 
               
-
-                return redirect()->route('cartview');
+                session()->flash('addcart', 'signup successfull');
+                return redirect()->back();
         }
        
         public function productview(Request $request)
@@ -104,8 +104,7 @@ class productcontroller extends Controller
 
         public function delete($id){
                 $cart = cart::find($id);
-                // $cart = cart::where('id', $id)->first();
-                // dd($id);
+                
                
                 
                         $cart->delete();
@@ -129,19 +128,56 @@ class productcontroller extends Controller
                 $order->status = 'payment successful'; 
                 $order->save();
             
+   
+                session()->flash('order', 'signup successfull');
+
                 $cart->delete();
-            
-                return redirect('vieworder');
+              
+                return redirect()->back();
             }
             
             
             public function vieworder(){
-                $product = Product::all();
+             
+                    $product = Product::all();
+                  
                 $order = order::all();
+
+                
 
                 $data = compact('product', 'order');
                 return view('vieworder')->with($data);
+                
             }
 
+            public function updateQuantity(Request $request, $product_id)
+            {
+                $product = cart::find($product_id);
+        
+                if (!$product) {
+                    return response()->json(['error' => 'Product not found'], 404);
+                }
+        
+                $operation = $request->input('operation');
+        
+                switch ($operation) {
+                    case 'increase':
+                        $newQuantity = $product->quntity + 1;
+                        break;
+                    case 'decrease':
+                        $newQuantity = max(1, $product->quntity - 1);
+                        break;
+                    default:
+                        return response()->json(['error' => 'Invalid operation'], 400);
+                }
+        
+               
+                
+                $product->quntity = $newQuantity;
+                $product->save();
+                $newPrice = $product->price * $newQuantity;
+        
+                return response()->json(['quantity' => $newQuantity, 'price' => $newPrice]);
+            }
         
 }
