@@ -90,23 +90,23 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
     $(document).ready(function () {
-       
+
         $("#menCategory").click(function () {
-    
+
             window.location.href = "/search?search=men";
         });
     });
     $(document).ready(function () {
-       
+
         $("#womenCategory").click(function () {
-          
+
             window.location.href = "/search?search=women";
         });
     });
     $(document).ready(function () {
-      
+
         $("#kids").click(function () {
-            
+
             window.location.href = "/search?search=kids";
         });
     });
@@ -123,7 +123,7 @@
 <div class="container border show border-5 mb-5">
     <div class="container my-4 mt-5" id="ques">
         <div class="row my-4" id="productContainer">
-          
+
             @foreach ($product->take(4) as $products)
                 <div class="col-3">
                     <div class="card">
@@ -180,47 +180,47 @@
 </style>
 
 <script>
-function showHiddenElements() {
-    let hiddenElements = document.querySelectorAll('.hidden');
-
-    hiddenElements.forEach(function (element) {
-        element.style.display = 'block';
-    });
-
-    let showElements = document.querySelectorAll(('.show'));
-
-    showElements.forEach(function (element) {
-        element.style.display = 'none';
-    });
-
-    let showHiddenbtn = document.querySelectorAll('.hidd1');
-
-    showHiddenbtn.forEach(function (element) {
-        element.style.display = 'block';
-    });
-}
-function HiddenElements() {
-    let hiddenElements = document.querySelectorAll('.hidden');
+    function showHiddenElements() {
+        let hiddenElements = document.querySelectorAll('.hidden');
 
         hiddenElements.forEach(function (element) {
-            element.style.display = 'none';
+            element.style.display = 'block';
         });
 
         let showElements = document.querySelectorAll(('.show'));
 
         showElements.forEach(function (element) {
-            element.style.display = 'block';
+            element.style.display = 'none';
         });
 
         let showHiddenbtn = document.querySelectorAll('.hidd1');
 
         showHiddenbtn.forEach(function (element) {
-            element.style.display = 'none';
+            element.style.display = 'block';
         });
-}
+    }
+    function HiddenElements() {
+        let hiddenElements = document.querySelectorAll('.hidden');
+
+            hiddenElements.forEach(function (element) {
+                element.style.display = 'none';
+            });
+
+            let showElements = document.querySelectorAll(('.show'));
+
+            showElements.forEach(function (element) {
+                element.style.display = 'block';
+            });
+
+            let showHiddenbtn = document.querySelectorAll('.hidd1');
+
+            showHiddenbtn.forEach(function (element) {
+                element.style.display = 'none';
+            });
+    }
 </script>
-    
-    
+
+
 
 <script>
     function showHiddenElements() {
@@ -262,6 +262,5 @@ function HiddenElements() {
             });
     }
 </script>
-    
 </body>
 </html>
