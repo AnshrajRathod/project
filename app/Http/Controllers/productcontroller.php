@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+    namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Models\product;
-use App\Models\cart;
-use App\Models\order;
+    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Auth;
+    use App\Models\product;
+    use App\Models\cart;
+    use App\Models\order;
 
 class productcontroller extends Controller
 {
@@ -22,10 +22,6 @@ class productcontroller extends Controller
                         ->leftJoin('category_master', 'category_master.id', '=', 'product.category_id')->get();
 
                 $data1 = compact('data', 'product');
-
-
-
-
 
                 return view('addproduct')->with($data1);
         }
@@ -59,10 +55,7 @@ class productcontroller extends Controller
                 return redirect()->route('login')->with('message', 'Please log in to add products to your cart.');
         }
 
-
                 $data111 = compact('cart');
-
-
                 return redirect()->route('cartview');
         }
 
@@ -90,14 +83,10 @@ class productcontroller extends Controller
         public function cartview()
         {
 
-
                 $cart = cart::select('add_cart.*', 'product.product_name', 'product.product_price', 'product.product_description')
                 ->leftJoin('product', 'product.id', '=', 'add_cart.product_id')->get();
-
-
                 $data = compact('cart');
                 return view('cartview')->with($data);
-
 
         }
 
@@ -105,15 +94,10 @@ class productcontroller extends Controller
                 $cart = cart::find($id);
                 // $cart = cart::where('id', $id)->first();
                 // dd($id);
-
-
-                        $cart->delete();
-
-
+                $cart->delete();
                 return redirect()->back();
         }
         public function order($id){
-
                 $cart = cart::find($id);
                 $userId = auth()->id();
 
@@ -127,9 +111,7 @@ class productcontroller extends Controller
                 $order->product_image_path = $product->product_image_path;
                 $order->status = 'payment successful';
                 $order->save();
-
                 $cart->delete();
-
                 return redirect('vieworder');
             }
 
