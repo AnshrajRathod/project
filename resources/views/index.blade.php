@@ -1,6 +1,29 @@
 @include("partials.header")
 @extends("partials.footer")
 
+
+
+
+@if (session()->has('login'))
+        <div class="alert alert-success alert-dismissible fade show my-2" role="alert" id="loginSuccessAlert">
+            <strong>
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">Welcome:{{ Auth::user()->name }}</h4>
+                    <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+                    <hr>
+                </div>
+            </strong>
+            
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @else
+       
+@endif
+<script>
+    setTimeout(function() {
+        $('#loginSuccessAlert').alert('close');
+    }, 3000);
+</script>
 <style>
 
     .img1 {
@@ -17,7 +40,7 @@
     }
 
     .card {
-        /* / width: 100px;/ border: none; */
+        
         transition: transform 0.3s;
         height: 95%;
     }
