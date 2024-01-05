@@ -39,7 +39,7 @@ class productcontroller extends Controller
 
                 if(!empty($cart)){
                         $cart->product_id = $product->id;
-                        $cart->user_id = $userId;
+                        $cart->users_id = $userId;
                         $cart->quntity = $cart->quntity + 1;
                         $cart->price = $product->product_price;
                         $cart->product_image_path = $product->product_image_path;
@@ -48,7 +48,7 @@ class productcontroller extends Controller
                 }else{
                         $cart = new cart();
                         $cart->product_id = $product->id;
-                        $cart->user_id = $userId;
+                        $cart->users_id = $userId;
                         $cart->quntity = 1;
                         $cart->price = $product->product_price;
                         $cart->product_image_path = $product->product_image_path;
