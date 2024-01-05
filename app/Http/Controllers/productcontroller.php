@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\product;
 use App\Models\cart;
+use App\Models\order;
 
 class productcontroller extends Controller
 {
@@ -29,6 +31,7 @@ class productcontroller extends Controller
         }
         public function add(Request $request, $id)
         {
+                if(Auth::check()){
                 $product = product::find($id);
                 $userId = auth()->id();
 
@@ -107,6 +110,35 @@ class productcontroller extends Controller
 
                 return redirect()->back();
         }
+        public function order($id){
+
+                $cart = cart::find($id);
+                $userId = auth()->id();
+
+                $product = product::find($cart->product_id );
+
+                $order = new order;
+                $order->product_id = $cart->product_id;
+                $order->users_id = $cart->users_id;
+                $order->quntity = $cart->quntity;
+                $order->price = $product->product_price;
+                $order->product_image_path = $product->product_image_path;
+                $order->status = 'payment successful';
+                $order->save();
+
+                $cart->delete();
+
+                return redirect('vieworder');
+            }
+
+
+            public function vieworder(){
+                $product = Product::all();
+                $order = order::all();
+
+                $data = compact('product', 'order');
+                return view('vieworder')->with($data);
+            }
 
 
 }
