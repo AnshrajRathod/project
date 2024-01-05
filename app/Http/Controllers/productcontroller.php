@@ -56,6 +56,9 @@ class productcontroller extends Controller
                         $cart->save();
 
                 }
+        }else{
+                return redirect()->route('login')->with('message', 'Please log in to add products to your cart.');
+        }
 
 
                 $data111 = compact('cart');
