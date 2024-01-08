@@ -108,7 +108,6 @@ class productcontroller extends Controller
                 return redirect()->back();
         }
         public function order($id){
-
                 $cart = cart::find($id);
                 $userId = auth()->id();
 
