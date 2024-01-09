@@ -16,34 +16,43 @@
 
 </script>
 @endif
-<center> <strong class="text-primary"><h1> Sign-In </h1> </strong>  </center>
-<div class="container my-5">
+<div class="container d-flex align-items-center justify-content-center my-5">
     @error('message')
     <span class="text-danger">{{ $message }}</span>
 @enderror
-    <form action="{{ route('login') }}" method="POST" id="loginForm">
-        @csrf
-        <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" name="email"
-                aria-describedby="email" value="{{ old('email') }}" required>
-        </div>
-        @error('email')
-        <span class="text-danger">{{ $message }}</span>
-    @enderror
 
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-            <div id="errorContainer2" class="text-danger"></div>
-        </div>
-        @error('password')
-        <span class="text-danger">{{ $message }}</span>
-    @enderror
+<div class="card mx-5 shadow" style="width: 50rem; color: rgb(0, 110, 255);">
+    <div class="card-body">
+        <h5 class="card-title">Sign-In</h5>
+        <p class="card-text">
+            <form action="{{ route('login') }}" method="POST" id="loginForm">
+                @csrf
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="email"
+                        value="{{ old('email') }}" required>
+                </div>
+                @error('email')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
 
-        <button type="submit" class="btn btn-primary">Sign-in</button>
-    </form>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                    <div id="errorContainer2" class="text-danger"></div>
+                </div>
+                @error('password')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
 
+                <button type="submit" class="btn btn-primary">Sign-in</button>
+            </form>
+        </p>
+    </div>
+</div>
+
+
+    
 
 
 </div>

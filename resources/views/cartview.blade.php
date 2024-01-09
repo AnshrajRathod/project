@@ -5,21 +5,27 @@
 <div class="alert alert-success alert-dismissible fade show my-2" role="alert" id="addcart">
     <strong>Success</strong> order successfully 
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </button>
 </div>
-<script>
-    setTimeout(function() {
-        $('#addcart').alert('close');
-    }, 3000);
-
-</script>
 @endif
 
+<style>
+    .form-check-input {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+
+.form-check-label {
+    font-size: 16px;
+}
+</style>
 @foreach($cart as $product)
+
 @php
 $orderid = $product->users_id;
 $users = Auth::user()->id;
 @endphp
+
 @if($orderid == $users )
 <div class="card mb-4">
     <div class="row g-0">
@@ -30,9 +36,15 @@ $users = Auth::user()->id;
             <div class="card-body">
                 <h4 class="card-text"><strong>Product name:</strong> {{ $product['product_name'] }}</h4>
                 <h5 class="card-text"><strong>Price:</strong> ₹{{ $product['price'] }}</h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="selectedProducts[]" id="check{{ $product['id'] }}" value="{{ $product['id'] }}" @if($product['check'] == 0)  @endif onclick="updateCheckValue({{ $product['id'] }}, this.checked)">
+<label class="form-check-label" for="check{{ $product['id'] }}"></label>
+                        Select Product
+                    </label>
+                </div>
                 <div class="row">
+
                 <div class="col-md-6">                   
-                   
                     <p class="card-text">
                         <strong>Quantity:</strong>
                         <button class="btn btn-sm btn-secondary"    onclick="decreaseQuantity({{ $product['id'] }})">-</button>
@@ -50,49 +62,47 @@ $users = Auth::user()->id;
                 <button class="btn btn-danger fs-6 my-3">Remove</button>
             </a>
             
+            {{-- <a href="{{ route('order', ['id' => $product['id']]) }}"onclick="return confirm('Are you sure you want to order this ?')" >
+            <button class="btn btn-warning fs-6 my-3">Order</button>
+            </a> --}}
             
-            
- 
-            <h5>Please pay here</h5>
-           
-            <a href="{{ route('order', ['id' => $product['id']]) }}"onclick="return confirm('Are you sure you want to order this ?')" >
-            <button class="btn btn-danger fs-6 my-3">Order</button>
-            </a>
-       
         </div>
     </div>
 </div>
 </div>
 
 @endif
-
 @endforeach
-
 @if($cart->where('users_id', Auth::id())->isEmpty())
 <center>
     <div class="alert alert-danger my-5">
        <b>No product found in Cart.</b>
     </div>
 </center>
+@else
+<center>
+    <a href="{{ route('order', ['id' => $product['id']]) }}"onclick="return confirm('Are you sure you want to order this ?')" >
+        <button class="btn btn-warning fs-6 my-3">Order</button>
+    </a>
+</center>
 @endif
 
 
-
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script>
+
+        setTimeout(function() {
+            $('#addcart').alert('close');
+        }, 3000);
+
     function hidee(){
         let hiddenElements = document.querySelectorAll('.hidee');
         hiddenElements.forEach(function (element) {
         element.style.display = 'block';
 });
     }
-</script>
-<style>
-    .hidee{
-        display: none;
-    }
-</style>
-<script>
+
     function decreaseQuantity(productId, price) {
         let quantityElement = document.getElementById('quantity_' + productId);
         let totalElement = document.getElementById('total_' + productId);
@@ -117,11 +127,6 @@ $users = Auth::user()->id;
         let totalElement = document.getElementById('total_' + productId);
         totalElement.textContent = total;
     }
-</script>
-
-
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
 
 function updateQuantity(productId, operation) {
     $.ajax({
@@ -129,7 +134,9 @@ function updateQuantity(productId, operation) {
         url: '/update-quantity/' + productId,
         data: { _token: '{{ csrf_token() }}', operation: operation },
         success: function(response) {
-          
+               
+
+            
             $('#quantity_' + productId).text(response.quantity);
             console.log(response.quantity);
           
@@ -150,5 +157,21 @@ function increaseQuantity(productId) {
 
 function decreaseQuantity(productId) {
     updateQuantity(productId, 'decrease');
+}
+function updateCheckValue(productId, isChecked) {
+    $.ajax({
+        type: 'GET',
+        url: '/update-check/' + productId,
+        data: {
+            _token: '{{ csrf_token() }}',
+            check: isChecked ? 0 : 1,
+        },
+        success: function(response) {
+            console.log('Check value updated successfully:', response.check);
+        },
+        error: function(error) {
+            console.log('Error updating check value:', error);
+        }
+    });
 }
 </script>
