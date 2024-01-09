@@ -15,7 +15,7 @@ class productcontroller extends Controller
 
 
         {
-        
+
                 $product = product::where('id', $id)->first();
 
 
@@ -24,7 +24,7 @@ class productcontroller extends Controller
 
                 $data1 = compact('data', 'product');
 
-            
+
 
 
 
@@ -35,17 +35,17 @@ class productcontroller extends Controller
                 if(Auth::check()){
                 $product = product::find($id);
                 $userId = auth()->id();
-               
+
                 $cart = cart::where('product_id',$id)->first();
 
                 if(!empty($cart)){
                         $cart->product_id = $product->id;
-                        $cart->users_id = $userId;
-                        $cart->quntity = $cart->quntity + 1; 
-                        $cart->price = $product->product_price; 
-                        $cart->product_image_path = $product->product_image_path;  
-                        $cart->status = 'pending'; 
-                        $cart->save(); 
+                        $cart->user_id = $userId;
+                        $cart->quntity = $cart->quntity + 1;
+                        $cart->price = $product->product_price;
+                        $cart->product_image_path = $product->product_image_path;
+                        $cart->status = 'pending';
+                        $cart->save();
                 }else{
                         $cart = new cart();
                         $cart->product_id = $product->id;
@@ -53,31 +53,28 @@ class productcontroller extends Controller
                         $cart->quntity = 1; 
                         $cart->price = $product->product_price; 
                         $cart->product_image_path = $product->product_image_path;  
-                        $cart->status = 'pending';
-                        $cart->check=1;
+                        $cart->status = 'pending'; 
                         $cart->save();
-        
                 }
         }else{
                 return redirect()->route('login')->with('message', 'Please log in to add products to your cart.');
         }
-              
 
                 $data111 = compact('cart'); 
               
                 session()->flash('addcart', 'signup successfull');
                 return redirect()->back();
         }
-       
+
         public function productview(Request $request)
         {
                 $search = $request['search'] ?? "";
-                $category = $request['category'] ?? ""; 
-                
+                $category = $request['category'] ?? "";
+
                 if ($search != "") {
                     $product = Product::where('product_name', 'LIKE', "%$search%")->get();
                 } elseif ($category != "") {
-                   
+
                     $product = Product::where('category', '=', $category)->get();
                 } else {
                     $product = Product::all();
@@ -92,7 +89,7 @@ class productcontroller extends Controller
 
         public function cartview()
         {
-          
+
 
                 $cart = cart::select('add_cart.*', 'product.product_name', 'product.product_price', 'product.product_description')
                 ->leftJoin('product', 'product.id', '=', 'add_cart.product_id')->get();
@@ -100,49 +97,43 @@ class productcontroller extends Controller
                   
                 $data = compact('cart');
                 return view('cartview')->with($data);
-                
-                
+
+
         }
 
         public function delete($id){
                 $cart = cart::find($id);
-                
-               
-                
                         $cart->delete();
-                
+
 
                 return redirect()->back();
         }
         public function order($id){
-                               
+                
+                $cart = cart::find($id);
                 $userId = auth()->id();
 
-                // $carts = cart::where('users_id', $userId)->orWhere('check', 0)->get();
-                $carts = cart::Where('check', 0)->get();
-
-
-                foreach($carts as $cart){
+                $product = product::find($cart->product_id );
                 
                 $order = new order; 
                 $order->product_id = $cart->product_id; 
                 $order->users_id = $cart->users_id; 
                 $order->quntity = $cart->quntity; 
-                $order->price = $cart->price; 
-                $order->product_image_path = $cart->product_image_path;  
+                $order->price = $product->product_price; 
+                $order->product_image_path = $product->product_image_path;  
                 $order->status = 'payment successful'; 
                 $order->save();
+            
+   
+                session()->flash('order', 'signup successfull');
 
                 $cart->delete();
 
-                }
-   
-                
               
                 return redirect()->back();
             }
-            
-            
+
+
             public function vieworder(){
              
                     $product = Product::all();
