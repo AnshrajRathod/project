@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\product;
 use App\Models\cart;
+use Illuminate\Support\Facades\DB;
 use App\Models\order;
 
 class productcontroller extends Controller
@@ -49,10 +50,10 @@ class productcontroller extends Controller
                         $cart = new cart();
                         $cart->product_id = $product->id;
                         $cart->users_id = $userId;
-                        $cart->quntity = 1;
-                        $cart->price = $product->product_price;
-                        $cart->product_image_path = $product->product_image_path;
-                        $cart->status = 'pending';
+                        $cart->quntity = 1; 
+                        $cart->price = $product->product_price; 
+                        $cart->product_image_path = $product->product_image_path;  
+                        $cart->status = 'pending'; 
                         $cart->save();
                 }
         }else{
@@ -93,7 +94,7 @@ class productcontroller extends Controller
                 $cart = cart::select('add_cart.*', 'product.product_name', 'product.product_price', 'product.product_description')
                 ->leftJoin('product', 'product.id', '=', 'add_cart.product_id')->get();
 
-
+                  
                 $data = compact('cart');
                 return view('cartview')->with($data);
 
@@ -108,23 +109,26 @@ class productcontroller extends Controller
                 return redirect()->back();
         }
         public function order($id){
+                
                 $cart = cart::find($id);
                 $userId = auth()->id();
 
                 $product = product::find($cart->product_id );
-
-                $order = new order;
-                $order->product_id = $cart->product_id;
-                $order->users_id = $cart->users_id;
-                $order->quntity = $cart->quntity;
-                $order->price = $product->product_price;
-                $order->product_image_path = $product->product_image_path;
-                $order->status = 'payment successful';
+                
+                $order = new order; 
+                $order->product_id = $cart->product_id; 
+                $order->users_id = $cart->users_id; 
+                $order->quntity = $cart->quntity; 
+                $order->price = $product->product_price; 
+                $order->product_image_path = $product->product_image_path;  
+                $order->status = 'payment successful'; 
                 $order->save();
+            
    
                 session()->flash('order', 'signup successfull');
 
                 $cart->delete();
+
               
                 return redirect()->back();
             }
@@ -146,13 +150,15 @@ class productcontroller extends Controller
             public function updateQuantity(Request $request, $product_id)
             {
                 $product = cart::find($product_id);
-        
+            
                 if (!$product) {
                     return response()->json(['error' => 'Product not found'], 404);
                 }
-        
+            
                 $operation = $request->input('operation');
-        
+            
+             
+            
                 switch ($operation) {
                     case 'increase':
                         $newQuantity = $product->quntity + 1;
@@ -163,14 +169,29 @@ class productcontroller extends Controller
                     default:
                         return response()->json(['error' => 'Invalid operation'], 400);
                 }
-        
-               
+            
                 
+             
                 $product->quntity = $newQuantity;
                 $product->save();
                 $newPrice = $product->price * $newQuantity;
-        
+            
                 return response()->json(['quantity' => $newQuantity, 'price' => $newPrice]);
             }
+            public function updateCheckValue(Request $request, $product_id)
+            {
+                $product = cart::find($product_id);
+            
+                if (!$product) {
+                    return response()->json(['error' => 'Product not found'], 404);
+                }
+                // dd($request->check);
+            
+                $product->check = $request->check;
+                $product->save();
+            
+                return response()->json(['check' => $product->check, 'productId' => $product_id]);
+            }
+            
         
 }

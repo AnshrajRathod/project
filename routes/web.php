@@ -40,6 +40,7 @@ Route::get('/add/{id}', [productcontroller::class, 'addview'])->name('add');
 
 Route::post('/cart/add/{product}', [productcontroller::class, 'add'])->name('cart.add');
 Route::get('/cart', [productcontroller::class, 'cartview'])->name('cartview');
+
 Route::get('/shoppingview', [productcontroller::class, 'shoppingview'])->name('shoppingview');
 Route::get('/delete/{id}', [productcontroller::class, 'delete'])->name('delete');
 
@@ -49,6 +50,6 @@ Route::get('/order/{id}', [productcontroller::class, 'order'])->name('order');
 
 Route::get('/vieworder', [productcontroller::class, 'vieworder'])->name('vieworder');
 Route::get('/update-quantity/{product_id}', [productcontroller::class, 'updateQuantity'])->name('update.quantity');
-
+Route::get('/update-check/{product_id}',  [productcontroller::class, 'updateCheckValue'])->name('update-check');
 
 });
