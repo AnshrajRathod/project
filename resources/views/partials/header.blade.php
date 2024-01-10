@@ -69,8 +69,9 @@
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel"id="offcanvasScrolling">
     <div class="offcanvas-header icon-1">
         <i class="bi bi-speedometer2"></i>
-        <h5 class="offcanvas-title" id="offcanvasScrollingLabel"> @auth
-            <span class="text-dark mx-3  ">{{ Auth::user()->name }}</span>
+        <h5 class="offcanvas-title" id="offcanvasScrollingLabel">
+             @auth
+            <span class="text-dark mx-3 ">  {{ Auth::user()->name }}</span>
         @else
             <div class="text-light"> Guest </div>
 
@@ -110,7 +111,7 @@
             <a class="nav-link  " aria-current="page" href="#"><i class="bi bi-bell icon-p"></i>Notifications</a>
           </li>
           <li class="nav-item offcanvas-icon p-0 m-0">
-            <a class="nav-link  " aria-current="page" href="#"><i class="bi bi-lightning-charge icon-p"></i>Plugins</a>
+            <a class="nav-link" aria-current="page" href="{{ route('logout') }}" style="color: red;"> <i class="bi bi-box-arrow-in-left"> </i> Logout </a>
           </li>
         </ul>
       </div>
@@ -143,7 +144,7 @@
                 @auth
                     <span class="text-light mx-3  ">{{ Auth::user()->name }}</span>
                 @else
-                    <div class="text-light"> Guest </div>
+                    
 
                 @endauth
 
@@ -154,6 +155,7 @@
                         style="font-size:30px;color:white"></i></a>
             @else
                 {{ header('location:login') }}
+                <span class="text-light mx-3  "> Guest </span>
             @endif
             <i id="liveToastBtn" class="fa fa-user float-right me-4"
                 style="font-size:30px; color:white; cursor: pointer;"></i>
