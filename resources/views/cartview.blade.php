@@ -7,6 +7,12 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
+@if (session()->has('orderselect'))
+<div class="alert alert-danger alert-dismissible fade show my-2" role="alert" id="addcart">
+    <strong>Success</strong> No items selected  in the cart
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
 
 <style>
     .form-check-input {

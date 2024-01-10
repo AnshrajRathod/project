@@ -113,30 +113,29 @@ class productcontroller extends Controller
                 $userId = auth()->id();
 
                 // $carts = cart::where('users_id', $userId)->orWhere('check', 0)->get();
-                $carts = cart::Where('check', 0)->get();
+                $carts = cart::where('check', 0)->get();
 
-               
-
-                // $product = product::find($cart->product_id );
-
-                foreach($carts as $cart){
+                if ($carts->count() > 0) {
+                    foreach ($carts as $cart) {
+                        $order = new order; 
+                        $order->product_id = $cart->product_id; 
+                        $order->users_id = $cart->users_id; 
+                        $order->quntity = $cart->quntity; // Fix typo in 'quantity'
+                        $order->price = $cart->price; 
+                        $order->product_image_path = $cart->product_image_path;  
+                        $order->status = 'payment successful'; 
+                        $order->save();
                 
-                $order = new order; 
-                $order->product_id = $cart->product_id; 
-                $order->users_id = $cart->users_id; 
-                $order->quntity = $cart->quntity; 
-                $order->price = $cart->price; 
-                $order->product_image_path = $cart->product_image_path;  
-                $order->status = 'payment successful'; 
-                $order->save();
-
-                $cart->delete();
-
+                        $cart->delete();
+                    }
+                
+                    session()->flash('order', 'signup successful');
+                    return redirect()->back();
+                } else {
+                    // Handle the case when there are no carts to process
+                    session()->flash('orderselect', 'No items in the cart');
+                    return redirect()->back();
                 }
-   
-                session()->flash('order', 'signup successfull');
-              
-                return redirect()->back();
             }
 
 
