@@ -8,19 +8,121 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
+ 
         .hidee{
             display: none;
         }
+        .offcanvas.show {
+        transform: none;
+    }
+    .nav-item a {
+        padding-left: 20px !important;
+    }
+    .nav-link {
+        display: block;
+        padding: .5rem 1rem;
+        
+        text-decoration: none;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;}
+        .icon-p {
+            margin-right: 10px;
+        }
+        #ul{ padding-left: 20px !important}
+
+
+.icon-width{
+    font-size: 20px;
+}
+.icon-width li a {
+    padding-right: 20px !important ;
+}
+.nav-item a {
+    padding-left: 20px !important;
+}
+.manu{
+    padding-right: 20px !important;
+    padding-left: 20px !important;
+    font-size: 20px !important;
+    border: none !important;
+}
+.offcanvas{
+    width: 300px;
+    height: 1000px;
+    background-color: rgb(249, 249, 249);
+    color: black;
+}
+#offcanvasScrolling {
+    margin-top: 86px;
+    width: 285px;
+    height: 820px;
+    background-color: rgb(249, 249, 249);
+    color:black;
+}
     </style>
 </head>
 
 <body>
+   
+    @if (Auth::check())
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel"id="offcanvasScrolling">
+    <div class="offcanvas-header icon-1">
+        <i class="bi bi-speedometer2"></i>
+        <h5 class="offcanvas-title" id="offcanvasScrollingLabel"> @auth
+            <span class="text-dark mx-3  ">{{ Auth::user()->name }}</span>
+        @else
+            <div class="text-light"> Guest </div>
+
+        @endauth</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button> 
+      </div>
+      <div class="offcanvas-body">
+
+        <h6>ORDER</h6>
+        <ul class="p-0 m-0" id="ul">
+          <li class="nav-item offcanvas-icon p-0 m-0">
+            <a class="nav-link" aria-current="page" href="{{ route('vieworder') }}"> <i class="bi bi-bag-check-fill"></i> Order page </a>
+          </li>
+          <li class="nav-item offcanvas-icon p-0 m-0">
+            <a class="nav-link" aria-current="page" href="{{ route('cartview') }}"><i class="bi bi-cart3"> </i> Cart </a>
+          </li>
+        </ul>
+        <br>
+        <h6>Components</h6>
+        <ul class="p-0 m-0"id="ul">
+          <li class="nav-item offcanvas-icon p-0 m-0">
+            <a class="nav-link  " aria-current="page" href="#"><i class="bi bi-puzzle icon-p"></i>Base</a>
+          </li>
+          <li class="nav-item offcanvas-icon p-0 m-0">
+            <a class="nav-link  " aria-current="page" href="#"><i class="bi bi-cursor icon-p"></i>Buttons</a>
+          </li>
+          <li class="nav-item offcanvas-icon p-0 m-0">
+            <a class="nav-link  " aria-current="page" href="#"><i class="bi bi-pie-chart icon-p"></i>Charts</a>
+          </li>
+          <li class="nav-item offcanvas-icon p-0 m-0">
+            <a class="nav-link  " aria-current="page" href="#"><i class="bi bi-card-text icon-p"></i>Forms</a>
+          </li>
+          <li class="nav-item offcanvas-icon p-0 m-0">
+            <a class="nav-link  " aria-current="page" href="#"><i class="bi bi-star icon-p"></i>Icons</a>
+          </li>
+          <li class="nav-item offcanvas-icon p-0 m-0">
+            <a class="nav-link  " aria-current="page" href="#"><i class="bi bi-bell icon-p"></i>Notifications</a>
+          </li>
+          <li class="nav-item offcanvas-icon p-0 m-0">
+            <a class="nav-link  " aria-current="page" href="#"><i class="bi bi-lightning-charge icon-p"></i>Plugins</a>
+          </li>
+        </ul>
+      </div>
+</div>
+@endif
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark ">
         <div class="container-fluid">
 
             <a class="navbar-brand" href="/"><img src="\img\logo1.avif"
                     style=" width: 60px; height:60px ; border-radius:50%"></a>
+                    <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+                    aria-controls="offcanvasScrolling"><i class="navbar-toggler-icon"></i></button>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
