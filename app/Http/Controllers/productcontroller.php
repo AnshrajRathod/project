@@ -108,27 +108,33 @@ class productcontroller extends Controller
 
                 return redirect()->back();
         }
-        public function order($id){
-                
-                $cart = cart::find($id);
+           public function order($id){
+                               
                 $userId = auth()->id();
 
-                $product = product::find($cart->product_id );
+                // $carts = cart::where('users_id', $userId)->orWhere('check', 0)->get();
+                $carts = cart::Where('check', 0)->get();
+
+               
+
+                // $product = product::find($cart->product_id );
+
+                foreach($carts as $cart){
                 
                 $order = new order; 
                 $order->product_id = $cart->product_id; 
                 $order->users_id = $cart->users_id; 
                 $order->quntity = $cart->quntity; 
-                $order->price = $product->product_price; 
-                $order->product_image_path = $product->product_image_path;  
+                $order->price = $cart->price; 
+                $order->product_image_path = $cart->product_image_path;  
                 $order->status = 'payment successful'; 
                 $order->save();
-            
-   
-                session()->flash('order', 'signup successfull');
 
                 $cart->delete();
 
+                }
+   
+                session()->flash('order', 'signup successfull');
               
                 return redirect()->back();
             }
